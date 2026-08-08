@@ -12,6 +12,10 @@
   services.gnome.gnome-keyring.enable = true;
 
   # Enable Sway
+  # It's intended that the user will configure sway
+  # As well as additional applications.
+  # However, this package itself is recommended for 
+  # A system level install. 
    programs.sway = 
   {
     enable = true;
