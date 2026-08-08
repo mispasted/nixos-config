@@ -1,5 +1,8 @@
 {config, pkgs, lib, ...}:
 {
+  # Spice integration (vm)
+  services.spice-vdagentd.enable = true;
+  
   # Enable the OpenSSH daemon.
   services.openssh = {
     	enable = true;

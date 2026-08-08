@@ -22,14 +22,14 @@ in
 
         # This is the name of the FOLDER installed to usr/share/sddm/themes
         # by the derivation.
-        theme = "SuperHotTheme"; 
+        # theme = "SuperHotTheme"; 
 
         # Make these available to sddm service
-        extraPackages = [
+       /*  extraPackages = [
             SuperHotTheme
             pkgs.gst_all_1.gst-plugins-good
             pkgs.gst_all_1.gst-libav
             pkgs.kdePackages.qtmultimedia
-        ];
+        ]; */
     };   
 }
