@@ -5,7 +5,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       ./xwayland/xwayland.nix
       ./nixos-virtualmachine-ssh.nix
       ./grub-bootloader/grub-booloader.nix
