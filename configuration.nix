@@ -6,7 +6,7 @@
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-      ./xwayland/xwayland.nix
+      ./wayland/wayland.nix
       ./nixos-virtualmachine-ssh.nix
       ./grub-bootloader/grub-booloader.nix
     ];
@@ -15,6 +15,8 @@
   environment.systemPackages = with pkgs; [
     neovim
     kitty
+    git
+    ranger
   ];
 
   # "experimental?" yet "Necessary."

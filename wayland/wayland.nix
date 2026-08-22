@@ -1,7 +1,7 @@
 {config, pkgs, lib, ...}:
 {
    imports = [
-    ./sddm/sddm.nix # Display Manager
+    ./greetd/greetd.nix # Display Manager
     ./sway.nix # Window Manager
    ]; 
 }

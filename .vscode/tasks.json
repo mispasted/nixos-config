@@ -4,7 +4,7 @@
     {
       "label": "Compile and Run",
       "type": "shell",
-      "command": "nix flake check && sudo nixos-rebuild build --flake .#nixos && sudo nixos-rebuild switch --flake .#nixos",
+      "command": "nix flake check --impure && sudo nixos-rebuild build --flake .#nixos --impure && sudo nixos-rebuild switch --flake .#nixos --impure",
       "options": {
         "cwd": "${workspaceFolder}"
       },
