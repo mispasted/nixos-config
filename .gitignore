@@ -1,2 +1,5 @@
+# Match only the directory names "result"
 /result/
+
+# This file should remain particular to the local machine
 hardware-configuration.nix

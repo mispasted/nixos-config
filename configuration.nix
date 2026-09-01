@@ -21,7 +21,12 @@
 
   # "experimental?" yet "Necessary."
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  
+  boot.blacklistedKernelModules = [ "wl" ];
+  boot.kernelModules = [ "b43" ];
+  hardware.firmware = [
+    pkgs.b43Firmware_6_30_163_46
+  ];
 
   networking.hostName = "nixos"; # Define your hostname.
   
