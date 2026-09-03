@@ -8,7 +8,7 @@
       ./hardware-configuration.nix
       ./wayland/wayland.nix
       ./nixos-virtualmachine-ssh.nix
-      ./grub-bootloader/grub-booloader.nix
+      ./grub-bootloader/grub-bootloader.nix
     ];
 
   # List packages installed in system profile.
