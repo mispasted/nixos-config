@@ -1,4 +1,4 @@
-# Match only the directory names "result"
+# Match only the directory named "result"
 /result/
 
 # This file should remain particular to the local machine
