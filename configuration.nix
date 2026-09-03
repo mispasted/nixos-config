@@ -5,7 +5,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
       ./wayland/wayland.nix
       ./nixos-virtualmachine-ssh.nix
       ./grub-bootloader/grub-booloader.nix
@@ -28,7 +28,7 @@
     pkgs.b43Firmware_6_30_163_46
   ];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "scapula"; # Define your hostname.
   
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
