@@ -70,11 +70,20 @@
     pulse.enable = true;
   };
 
+  # For xremap
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="input", TAG+="uaccess", MODE:="0660", OPTIONS+="static_node=uinput"
+  ''; 
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."mispasted" = {
     isNormalUser = true;
     description = "mispasted";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ 
+      "networkmanager" 
+      "wheel" 
+      "input" # For xremap
+      ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       git
