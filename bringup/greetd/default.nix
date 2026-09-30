@@ -8,7 +8,7 @@
 }:
 let
   name = "greetd"; # program name
-  type = "bringup"; # organizational catagory 
+  type = "bringup"; # organizational catagory
   cfg = config.mispasted.${type}.${name};
 in
 {
@@ -23,6 +23,18 @@ in
 
   # --- configuration definitions ---
   config = lib.mkIf cfg.enable {
-   services.displayManager.regreet.enable = true;
+    services.displayManager.regreet = {
+      enable = true;
+
+      theme = {
+        package = pkgs.nordic;
+        name = "Nordic-darker";
+      };
+
+      iconTheme = {
+        package = pkgs.papirus-nord;
+        name = "Papirus-Dark";
+      };
+    };
   };
 }
