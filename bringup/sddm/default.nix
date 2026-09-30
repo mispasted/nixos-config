@@ -37,7 +37,7 @@ in
       SuperHotTheme = pkgs.callPackage ./Derive-SuperHotTheme.nix { };
     in
     {
-      environment.systemPackages = lib.mkIf (cfg.theme == "superhot") (
+      environment.systemPackages = lib.optionals (cfg.theme == "superhot") (
         with pkgs;
         [
           # These are all needed for the Theme.
@@ -56,17 +56,18 @@ in
         wayland.enable = true;
 
         # Make these available to sddm service
-        extraPackages = lib.mkIf (cfg.theme == "superhot") [
-          pkgs.gst_all_1.gst-plugins-good
-          pkgs.gst_all_1.gst-libav
-          pkgs.kdePackages.qtmultimedia
-          SuperHotTheme
-        ];
+        extraPackages =
+          lib.optionals cfg.theme == "superhot" [
+            pkgs.gst_all_1.gst-plugins-good
+            pkgs.gst_all_1.gst-libav
+            pkgs.kdePackages.qtmultimedia
+            SuperHotTheme
+          ];
       };
 
       # This is the name of the FOLDER installed to usr/share/sddm/themes
       # by the derivation
-      services.displayManager.sddm.theme = lib.mkIf (cfg.theme == "superhot") "SuperHotTheme";
+      services.displayManager.sddm.theme = if cfg.theme == "superhot" then "SuperHotTheme" else null;
     }
   );
 }

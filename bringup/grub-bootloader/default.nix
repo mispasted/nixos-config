@@ -48,7 +48,7 @@ in
     # More grub themes: https://github.com/vinceliuice/grub2-themes
     # theme = ./virtuaverse-theme;
     # Themes - must also be allowed in the option enum
-    boot.loader.grub.theme = lib.mkIf (cfg.theme == "virtuaverse") ./virtuaverse-theme;
+    boot.loader.grub.theme = if cfg.theme == "virtuaverse" then ./virtuaverse-theme else null;
 
   };
 }

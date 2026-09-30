@@ -23,6 +23,6 @@ in
 
   # --- configuration definitions ---
   config = lib.mkIf cfg.enable {
-    programs.regreet.enable = true;
+   services.displayManager.regreet.enable = true;
   };
 }

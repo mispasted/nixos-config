@@ -34,7 +34,6 @@ in
   config = lib.mkIf cfg.enable {
     # config here ...
     example-enum-virtuaverse-option =
-      lib.mkIf cfg.example-enum == "virtuaverse" {
-      };
+      if cfg.example-enum == "virtuaverse" then true else false;
   };
 }
