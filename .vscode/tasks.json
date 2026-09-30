@@ -4,7 +4,7 @@
     {
       "label": "Compile and Run",
       "type": "shell",
-      "command": "nix flake check --impure && sudo nixos-rebuild build --flake .#nixos --impure && sudo nixos-rebuild switch --flake .#nixos --impure",
+      "command": "make activate",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -19,99 +19,6 @@
       },
       "runOptions": {
         "instanceLimit": 1
-      }
-    },
-    {
-      "label": "NixOS: Check flake",
-      "type": "shell",
-      "command": "nix flake check",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [],
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated",
-        "clear": true
-      }
-    },
-    {
-      "label": "NixOS: Build",
-      "type": "shell",
-      "command": "sudo nixos-rebuild build --flake \".#$(hostname)\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated",
-        "clear": true
-      }
-    },
-    {
-      "label": "NixOS: Test",
-      "type": "shell",
-      "command": "sudo nixos-rebuild test --flake \".#$(hostname)\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated",
-        "clear": true
-      }
-    },
-    {
-      "label": "NixOS: Switch",
-      "type": "shell",
-      "command": "sudo nixos-rebuild switch --flake \".#$(hostname)\"",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated",
-        "clear": true
-      }
-    },
-    {
-      "label": "NixOS: Check and switch",
-      "dependsOrder": "sequence",
-      "dependsOn": [
-        "NixOS: Check flake",
-        "NixOS: Switch"
-      ],
-      "problemMatcher": []
-    },
-    {
-      "label": "NixOS: Update inputs",
-      "type": "shell",
-      "command": "nix flake update",
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated",
-        "clear": true
-      }
-    },
-    {
-      "label": "NixOS: Show generations",
-      "type": "shell",
-      "command": "sudo nix-env --profile /nix/var/nix/profiles/system --list-generations",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated"
       }
     }
   ]

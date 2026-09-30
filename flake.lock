@@ -18,8 +18,25 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "waveforms": "waveforms"
       }
+    },
+    "waveforms": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./packages/waveforms-local",
+        "type": "path"
+      },
+      "original": {
+        "path": "./packages/waveforms-local",
+        "type": "path"
+      },
+      "parent": []
     }
   },
   "root": "root",

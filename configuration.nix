@@ -1,106 +1,26 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
+
+  # These imports only define options, rather than installing anything.
+  # The flake file should also import the appropriate host configuration,
+  # Which sets the options such that the system is configured according to the host-specific settings.
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./wayland/wayland.nix
-      ./nixos-virtualmachine-ssh.nix
-      ./grub-bootloader/grub-bootloader.nix
+    [ 
+      ./bringup
+      ./services
+      ./privileged-programs
     ];
 
-  # List packages installed in system profile.
+  # Packages I think every system should have.
+  # Mainly for setting up the nixos-config and home-manager repos
+  # Try to keep this very short, since systems can't opt out of these.   
   environment.systemPackages = with pkgs; [
     neovim
     kitty
     git
     ranger
+    gnumake
+    home-manager
   ];
-
-  # "experimental?" yet "Necessary."
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  boot.blacklistedKernelModules = [ "wl" ];
-  boot.kernelModules = [ "b43" ];
-  hardware.firmware = [
-    pkgs.b43Firmware_6_30_163_46
-  ];
-
-  networking.hostName = "scapula"; # Define your hostname.
-  
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Enable network manager applet
-  programs.nm-applet.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Denver";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # For xremap
-  services.udev.extraRules = ''
-    KERNEL=="uinput", GROUP="input", TAG+="uaccess", MODE:="0660", OPTIONS+="static_node=uinput"
-  ''; 
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."mispasted" = {
-    isNormalUser = true;
-    description = "mispasted";
-    extraGroups = [ 
-      "networkmanager" 
-      "wheel" 
-      "input" # For xremap
-      ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      git
-      gh
-      tldr
-    ];
-  };
-
-  programs.zsh.enable = true;
-  
-  # All users in the wheel group are allowed to access the nix daemon:
-  nix.settings.allowed-users = [ "@wheel" ]; 
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [  ];
-  # networking.firewall.allowedUDPPorts = [  ];
-
-  system.stateVersion = "26.05"; #DON'T CHANGE -MP
 }
 

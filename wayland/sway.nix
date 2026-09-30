@@ -22,8 +22,11 @@
     package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
 
-    # Nice list: https://github.com/swaywm/sway/wiki/Useful-add-ons-for-sway
-    # Currently the default
+    # This allow sway to find executables installed by home-manager
+    extraSessionCommands = ''
+      export PATH="$HOME/.nix-profile/bin:$PATH"
+    '';
+
   };
 
   # kanshi systemd service

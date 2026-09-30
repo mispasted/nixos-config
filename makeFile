@@ -1,0 +1,8 @@
+HOSTNAME := $(shell hostname)
+.PHONY: activate install
+
+activate:
+	nix flake check .#$(HOSTNAME)
+	
+install:
+	nix flake check .#$(HOSTNAME) && sudo nixos-rebuild build --flake .#$(HOSTNAME) && sudo nixos-rebuild switch --flake .#$(HOSTNAME)
